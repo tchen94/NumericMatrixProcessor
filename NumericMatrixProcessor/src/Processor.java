@@ -78,15 +78,84 @@ public class Processor {
         }
     }
 
-        int multiple = Integer.parseInt(scanner.nextLine());
-        int[][] b = new int[x][y];
+    static void matrixToMatrixMultiplication() {
 
-        for (int row = 0; row < b.length; row++) {
-            for (int col = 0; col < b[row].length; col++) {
-                b[row][col] = multiple * a[row][col];
-                System.out.print(b[row][col] + " ");
+        System.out.print("Enter size of first matrix: ");
+        String[] firstMatrixInput = scanner.nextLine().split(" ");
+        int firstMatrixRow = Integer.parseInt(firstMatrixInput[0]);
+        int firstMatrixCol = Integer.parseInt(firstMatrixInput[1]);
+        double[][] firstMatrix = new double[firstMatrixRow][firstMatrixCol];
+
+        System.out.println("Enter first matrix:");
+        createDoubleMatrix(firstMatrix);
+
+        System.out.print("Enter size of second matrix: ");
+        String[] secondMatrixInput = scanner.nextLine().split(" ");
+        int secondMatrixRow = Integer.parseInt(secondMatrixInput[0]);
+        int secondMatrixCol = Integer.parseInt(secondMatrixInput[1]);
+        double[][] secondMatrix = new double[secondMatrixRow][secondMatrixCol];
+
+        System.out.println("Enter second matrix:");
+        createDoubleMatrix(secondMatrix);
+
+        double[][] product;
+        System.out.println("The result is:");
+
+        if (firstMatrixCol == secondMatrixRow) {
+
+            product = new double[firstMatrixRow][secondMatrixCol];
+
+            for (int x = 0; x < firstMatrixRow; x++) {
+                for (int y = 0; y < secondMatrixCol; y++) {
+                    product[x][y] = 0;
+                    for (int z = 0; z < firstMatrixCol; z++) {
+                        product[x][y] += firstMatrix[x][z] * secondMatrix[z][y];
+                    }
+                    System.out.print(product[x][y] + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
+        } else {
+
+            product = new double[firstMatrixRow][firstMatrixCol];
+
+            for (int x = 0; x < product.length; x++) {
+                for (int y = 0; y < product[x].length; y++) {
+                    product[x][y] = 0;
+                    for (int z = 0; z < product.length; z++) {
+                        product[x][y] += firstMatrix[x][z] * secondMatrix[z][y];
+                    }
+                    System.out.print(product[x][y] + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    static void program() {
+        while (true) {
+            System.out.println("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit");
+            System.out.print("Your choice: ");
+            int input = Integer.parseInt(scanner.nextLine());
+
+            if (input == 0) {
+                break;
+            }
+
+            switch (input) {
+                case 1:
+                    matrixAddition();
+                    System.out.println();
+                    break;
+                case 2:
+                    matrixConstantMultiplication();
+                    System.out.println();
+                    break;
+                case 3:
+                    matrixToMatrixMultiplication();
+                    System.out.println();
+                    break;
+            }
         }
     }
 
