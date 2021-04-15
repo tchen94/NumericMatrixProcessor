@@ -5,8 +5,7 @@ public class Processor {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        matrixAddition();
-        matrixMultiplication();
+        start();
     }
 
     private static void matrixAddition() {
@@ -74,6 +73,10 @@ public class Processor {
             }
             System.out.println();
         }
+    }
+
+    static void start() {
+        program();
     }
 }
 
