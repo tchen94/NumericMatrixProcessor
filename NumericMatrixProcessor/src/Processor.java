@@ -8,31 +8,14 @@ public class Processor {
         start();
     }
 
-    private static void matrixAddition() {
-        Scanner scanner = new Scanner(System.in);
-        String[] inputA = scanner.nextLine().split(" ");
-        int aRow = Integer.parseInt(inputA[0]);
-        int aCol = Integer.parseInt(inputA[1]);
-        int[][] a = new int[aRow][aCol];
-
-        for (int row = 0; row < a.length; row++) {
+    private static void createDoubleMatrix(double[][] x) {
+        for (int row = 0; row < x.length; row++) {
             String[] rowNum = scanner.nextLine().split(" ");
-            for (int col = 0; col < a[row].length; col++) {
-                a[row][col] = Integer.parseInt(rowNum[col]);
+            for (int col = 0; col < x[row].length; col++) {
+                x[row][col] = Double.parseDouble(rowNum[col]);
             }
         }
-
-        String[] inputB = scanner.nextLine().split(" ");
-        int bRow = Integer.parseInt(inputB[0]);
-        int bCol = Integer.parseInt(inputB[1]);
-        int[][] b = new int[bRow][bCol];
-
-        for (int row = 0; row < b.length; row++) {
-            String[] rowNum = scanner.nextLine().split(" ");
-            for (int col = 0; col < b[row].length; col++) {
-                b[row][col] = Integer.parseInt(rowNum[col]);
-            }
-        }
+    }
 
         int[][] c = new int[aRow][aCol];
 
