@@ -53,19 +53,30 @@ public class Processor {
         }
     }
 
-    public static void matrixMultiplication() {
-        Scanner scanner = new Scanner(System.in);
-        String[] input = scanner.nextLine().split(" ");
-        int x = Integer.parseInt(input[0]);
-        int y = Integer.parseInt(input[1]);
-        int[][] a = new int[x][y];
+    static void matrixConstantMultiplication() {
 
-        for (int row = 0; row < a.length; row++) {
-            String[] rowNum = scanner.nextLine().split(" ");
-            for (int col = 0; col < a[row].length; col++) {
-                a[row][col] = Integer.parseInt(rowNum[col]);
+        System.out.print("Enter size of matrix:");
+        String[] input = scanner.nextLine().split(" ");
+        int matrixRow = Integer.parseInt(input[0]);
+        int matrixCol = Integer.parseInt(input[1]);
+        double[][] someMatrix = new double[matrixRow][matrixCol];
+
+        System.out.println("Enter matrix: ");
+        createDoubleMatrix(someMatrix);
+
+        System.out.print("Enter constant: ");
+        double multiple = Double.parseDouble(scanner.nextLine());
+        double[][] answer = new double[matrixRow][matrixCol];
+
+        System.out.println("The result is:");
+        for (int row = 0; row < answer.length; row++) {
+            for (int col = 0; col < answer[row].length; col++) {
+                answer[row][col] = multiple * someMatrix[row][col];
+                System.out.print(answer[row][col] + " ");
             }
+            System.out.println();
         }
+    }
 
         int multiple = Integer.parseInt(scanner.nextLine());
         int[][] b = new int[x][y];
