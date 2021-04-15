@@ -17,15 +17,36 @@ public class Processor {
         }
     }
 
-        int[][] c = new int[aRow][aCol];
+    static void matrixAddition() {
 
-        if (aRow != bRow && aCol != bCol) {
-            System.out.println("ERROR");
+        System.out.print("Enter size of first matrix: ");
+        String[] firstMatrixInput = scanner.nextLine().split(" ");
+        int firstMatrixRow = Integer.parseInt(firstMatrixInput[0]);
+        int firstMatrixCol = Integer.parseInt(firstMatrixInput[1]);
+        double[][] firstMatrix = new double[firstMatrixRow][firstMatrixCol];
+
+        System.out.println("Enter first matrix:");
+        createDoubleMatrix(firstMatrix);
+
+        System.out.print("Enter size of second matrix: ");
+        String[] secondMatrixInput = scanner.nextLine().split(" ");
+        int secondMatrixRow = Integer.parseInt(secondMatrixInput[0]);
+        int secondMatrixCol = Integer.parseInt(secondMatrixInput[1]);
+        double[][] secondMatrix = new double[secondMatrixRow][secondMatrixCol];
+
+        System.out.println("Enter second matrix:");
+        createDoubleMatrix(secondMatrix);
+
+        double[][] answer = new double[firstMatrixRow][firstMatrixCol]; // The dimensions have to be equal
+
+        if (firstMatrixRow != secondMatrixRow && firstMatrixCol != secondMatrixCol) {
+            System.out.println("The operation cannot be performed.");
         } else {
-            for (int row = 0; row < c.length; row++) {
-                for (int col = 0; col < c[row].length; col++) {
-                    c[row][col] = a[row][col] + b[row][col];
-                    System.out.print(c[row][col] + " ");
+            System.out.println("The result is:");
+            for (int row = 0; row < answer.length; row++) {
+                for (int col = 0; col < answer[row].length; col++) {
+                    answer[row][col] = firstMatrix[row][col] + secondMatrix[row][col];
+                    System.out.print(answer[row][col] + " ");
                 }
                 System.out.println();
             }
