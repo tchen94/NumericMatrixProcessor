@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Processor {
 
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         matrixAddition();
         matrixMultiplication();
