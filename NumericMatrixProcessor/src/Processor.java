@@ -248,7 +248,8 @@ public class Processor {
 
     static void program() {
         while (true) {
-            System.out.println("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit");
+            System.out.println("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices" +
+                    "\n4. Transpose matrix\n0. Exit");
             System.out.print("Your choice: ");
             int input = Integer.parseInt(scanner.nextLine());
 
