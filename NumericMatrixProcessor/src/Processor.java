@@ -132,6 +132,120 @@ public class Processor {
         }
     }
 
+    static void transposeMatrixPrompts() {
+
+        System.out.println("\n1. Main diagonal\n2. Side diagonal\n3. Vertical line\n4. Horizontal line");
+        System.out.print("Your choice: ");
+        int choice = Integer.parseInt(scanner.nextLine());
+        
+        switch (choice) {
+            case 1:
+                transposeMainDiagonal();
+                break;
+            case 2:
+                transposeSideDiagonal();
+                break;
+            case 3:
+                transposeVertLine();
+                break;
+            case 4:
+                transposeHorizLine();
+                break;
+        }
+    }
+
+    private static void transposeHorizLine() {
+
+        System.out.print("Enter matrix size: ");
+        String[] firstMatrixInput = scanner.nextLine().split(" ");
+        int matrixRow = Integer.parseInt(firstMatrixInput[0]);
+        int matrixCol = Integer.parseInt(firstMatrixInput[1]);
+        double[][] matrix = new double[matrixRow][matrixCol];
+
+        System.out.println("Enter matrix:");
+        createDoubleMatrix(matrix);
+
+        double[][] horizontalLine = new double[matrixRow][matrixCol];
+
+        System.out.println("The result is:");
+        for (int row = 0; row < horizontalLine.length; row++) {
+            for (int col = 0; col < horizontalLine[row].length; col++) {
+                horizontalLine[row][col] = matrix[matrixRow - 1 - row][col];
+                System.out.print(horizontalLine[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void transposeVertLine() {
+
+        System.out.print("Enter matrix size: ");
+        String[] firstMatrixInput = scanner.nextLine().split(" ");
+        int matrixRow = Integer.parseInt(firstMatrixInput[0]);
+        int matrixCol = Integer.parseInt(firstMatrixInput[1]);
+        double[][] matrix = new double[matrixRow][matrixCol];
+
+        System.out.println("Enter matrix:");
+        createDoubleMatrix(matrix);
+
+        double[][] verticalLine = new double[matrixRow][matrixCol];
+
+        System.out.println("The result is:");
+        for (int row = 0; row < verticalLine.length; row++) {
+            for (int col = 0; col < verticalLine[row].length; col++) {
+                verticalLine[row][col] = matrix[row][matrixCol - 1 - col];
+                System.out.print(verticalLine[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void transposeSideDiagonal() {
+
+        System.out.print("Enter matrix size: ");
+        String[] firstMatrixInput = scanner.nextLine().split(" ");
+        int matrixRow = Integer.parseInt(firstMatrixInput[0]);
+        int matrixCol = Integer.parseInt(firstMatrixInput[1]);
+        double[][] matrix = new double[matrixRow][matrixCol];
+
+        System.out.println("Enter matrix:");
+        createDoubleMatrix(matrix);
+
+        double[][] sideDiagonal = new double[matrixRow][matrixCol];
+
+        System.out.println("The result is:");
+        for (int row = 0; row < sideDiagonal.length; row++) {
+            for (int col = 0; col < sideDiagonal[row].length; col++) {
+                sideDiagonal[row][col] = matrix[matrixCol - 1 - col][matrixRow - 1 - row];
+                System.out.print(sideDiagonal[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void transposeMainDiagonal() {
+
+        System.out.print("Enter matrix size: ");
+        String[] firstMatrixInput = scanner.nextLine().split(" ");
+        int matrixRow = Integer.parseInt(firstMatrixInput[0]);
+        int matrixCol = Integer.parseInt(firstMatrixInput[1]);
+        double[][] matrix = new double[matrixRow][matrixCol];
+
+        System.out.println("Enter matrix:");
+        createDoubleMatrix(matrix);
+
+        double[][] mainDiagonal = new double[matrixRow][matrixCol];
+
+        System.out.println("The result is:");
+        for (int row = 0; row < mainDiagonal.length; row++) {
+            for (int col = 0; col < mainDiagonal[row].length; col++) {
+                mainDiagonal[row][col] = matrix[col][row];
+                System.out.print(mainDiagonal[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     static void program() {
         while (true) {
             System.out.println("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit");
