@@ -270,6 +270,10 @@ public class Processor {
                     matrixToMatrixMultiplication();
                     System.out.println();
                     break;
+                case 4:
+                    transposeMatrixPrompts();
+                    System.out.println();
+                    break;
             }
         }
     }
