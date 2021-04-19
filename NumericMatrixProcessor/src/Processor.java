@@ -291,7 +291,7 @@ public class Processor {
     }
 
     private static void inverseMatrix() {
-        double determinant = 0;
+
         System.out.print("Enter matrix size: ");
         String[] input = scanner.nextLine().split(" ");
         int row = Integer.parseInt(input[0]);
