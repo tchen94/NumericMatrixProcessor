@@ -246,6 +246,104 @@ public class Processor {
         }
     }
 
+    private static void matrixDeterminant() {
+        System.out.print("Enter matrix size: ");
+        String[] input = scanner.nextLine().split(" ");
+        int row = Integer.parseInt(input[0]);
+        int col = Integer.parseInt(input[1]);
+        double[][] matrix = new double[row][col];
+        System.out.println("Enter matrix:");
+
+        createDoubleMatrix(matrix);
+
+        System.out.println("The result is:");
+        System.out.println(calculateDeterminant(matrix));
+
+    }
+
+    private static double calculateDeterminant(double[][] matrix) {
+        double answer = 0;
+        double s;
+
+        if (matrix.length == 1) {
+            return matrix[0][0];
+        }
+
+        for (int x = 0; x < matrix.length; x++) {
+            double[][] small = new double[matrix.length - 1][matrix.length - 1];
+            for (int row = 1; row < matrix.length; row++) {
+                for (int col = 0; col < matrix.length; col++) {
+                    if (col < x) {
+                        small[row - 1][col] = matrix[row][col];
+                    } else if (col > x) {
+                        small[row - 1][col - 1] = matrix[row][col];
+                    }
+                }
+            }
+            if (x % 2 == 0) {
+                s = 1;
+            } else {
+                s = -1;
+            }
+            answer += s * matrix[0][x] * (calculateDeterminant(small));
+        }
+        return answer;
+    }
+
+    private static void inverseMatrix() {
+        double determinant = 0;
+        System.out.print("Enter matrix size: ");
+        String[] input = scanner.nextLine().split(" ");
+        int row = Integer.parseInt(input[0]);
+        int col = Integer.parseInt(input[1]);
+        double[][] matrix = new double[row][col];
+        System.out.println("Enter matrix:");
+
+        createDoubleMatrix(matrix);
+
+        System.out.println("The result is:");
+        if (calculateDeterminant(matrix) == 0) {
+            System.out.println("This matrix doesn't have an inverse.");
+        } else {
+            for (int x = 0; x < calculateInverse(matrix).length; x++) {
+                for (int y = 0; y < calculateInverse(matrix)[x].length; y++) {
+                    System.out.print(calculateInverse(matrix)[x][y] + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    private static double[][] minor(double[][] matrix, int row, int column) {
+        double[][] minor = new double[matrix.length - 1][matrix.length - 1];
+
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; i != row && j < matrix[i].length; j++)
+                if (j != column)
+                    minor[i < row ? i : i - 1][j < column ? j : j - 1] = matrix[i][j];
+        return minor;
+    }
+
+    private static double[][] calculateInverse(double[][] matrix) {
+        double[][] inverse = new double[matrix.length][matrix.length];
+
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[i].length; j++)
+                inverse[i][j] = Math.pow(-1, i + j)
+                        * calculateDeterminant((minor(matrix, i, j)));
+
+        double det = 1.0 / calculateDeterminant(matrix);
+        for (int i = 0; i < inverse.length; i++) {
+            for (int j = 0; j <= i; j++) {
+                double temp = inverse[i][j];
+                inverse[i][j] = inverse[j][i] * det;
+                inverse[j][i] = temp * det;
+            }
+        }
+
+        return inverse;
+    }
+
     static void program() {
         while (true) {
             System.out.println("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices" +
