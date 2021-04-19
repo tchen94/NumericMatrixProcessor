@@ -347,7 +347,7 @@ public class Processor {
     static void program() {
         while (true) {
             System.out.println("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices" +
-                    "\n4. Transpose matrix\n0. Exit");
+                    "\n4. Transpose matrix\n5. Calculate a determinant\n6. Inverse matrix\n0. Exit");
             System.out.print("Your choice: ");
             int input = Integer.parseInt(scanner.nextLine());
 
@@ -370,6 +370,14 @@ public class Processor {
                     break;
                 case 4:
                     transposeMatrixPrompts();
+                    System.out.println();
+                    break;
+                case 5:
+                    matrixDeterminant();
+                    System.out.println();
+                    break;
+                case 6:
+                    inverseMatrix();
                     System.out.println();
                     break;
             }
